@@ -1,0 +1,25 @@
+- hosts: spacewalk-server   
+  tasks:
+  - name: Hostname change
+    hostname:
+      name: spacewalk
+
+  - name: Install prerequisites
+    package:
+      name:
+      - git
+      - vim
+      - wget
+      - unzip
+      - epel-release      
+      state: latest  
+      
+  - name: Disable SELinux
+    selinux:
+      state: disabled
+
+      
+      
+      
+      
+
