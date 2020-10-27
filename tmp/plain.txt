@@ -33,19 +33,13 @@ export ANSIBLE_HOST_KEY_CHECKING=False
    28  sudo reboot
    
  
-firewall-cmd --add-port=5222/tcp --permanent
- 
-firewall-cmd --add-port=5269/tcp --permanent
- 
+firewall-cmd --add-port=5222/tcp --permanent 
+firewall-cmd --add-port=5269/tcp --permanent 
 ? firewall-cmd --add-port=69/udp --permanent
-? firewall-cmd --add-port=69/tcp --permanent
-
- 
-firewall-cmd --add-port=5222/udp --permanent
- 
+? firewall-cmd --add-port=69/tcp --permanent 
+firewall-cmd --add-port=5222/udp --permanent 
 firewall-cmd --add-port=5269/udp --permanent
-
-sudo firewall-cmd --reload
+firewall-cmd --reload
 udo firewall-cmd --list-services
 # dhcpv6-client http https ssh
 
