@@ -44,6 +44,7 @@ udo firewall-cmd --list-services
 # dhcpv6-client http https ssh
 
 sudo systemctl restart firewalld
+
 spacewalk-setup-postgresql create --db spacewalk --user spacewalkuser --password spacewalkuser123
 
 sudo spacewalk-setup  --skip-db-install

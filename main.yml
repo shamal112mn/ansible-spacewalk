@@ -63,8 +63,9 @@
       state: started
       enabled: yes
 
-  # - name: Reboot
-  #   command: reboot
+  - name: Reboot spacewalk server
+    reboot:
+      reboot_timeout: 300
     
   - name: Continue firewall commands
     command: firewall-cmd --add-port=5222/tcp --permanent 
@@ -76,6 +77,8 @@
     command: firewall-cmd --reload
     command: firewall-cmd --list-services         # dhcpv6-client http https ssh
     command: systemctl restart firewalld
+
+    
 
 
 # spacewalk-setup-postgresql create --db spacewalk --user spacewalkuser --password spacewalkuser123
