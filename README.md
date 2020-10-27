@@ -21,22 +21,6 @@ Spacewalk Server Hardware / Virtual sizing advisement:
 
 
 
-For the lazy people: 
-To install both ansible and the spacewalk server:
-```
-sh <(curl -s https://raw.githubusercontent.com/rhessing/spacewalk.ansible/master/init-server.sh)
-```
-
-To install both ansible and the spacewalk proxy:
-```
-sh <(curl -s https://raw.githubusercontent.com/rhessing/spacewalk.ansible/master/init-proxy.sh)
-```
-
-To install both ansible and the spacewalk client:
-```
-sh <(curl -s https://raw.githubusercontent.com/rhessing/spacewalk.ansible/master/init-client.sh)
-```
-
 Install a full Spacewalk server on CentOS 7 and also adds customizations:
 - CentOS 6 base+extras+epel+updates repos, channel and activation key 
 - CentOS 7 base+extras+epel+updates repos, channel and activation key

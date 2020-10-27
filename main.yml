@@ -1,22 +1,88 @@
 - hosts: spacewalk-server   
   tasks:
-  - name: Hostname change
-    hostname:
-      name: spacewalk
+  # - name: Hostname change
+  #   hostname:
+  #     name: spacewalk
 
-  - name: Install prerequisites
-    package:
+  # - name: Disable SELinux
+  #   selinux:
+  #     state: disabled    
+
+  # - name: Install prerequisites
+  #   package:
+  #     name:
+  #     - git
+  #     - vim
+  #     - wget
+  #     - unzip
+  #     - epel-release      
+  #     state: latest 
+
+  - name: Install on server
+    yum:
       name:
-      - git
-      - vim
-      - wget
-      - unzip
-      - epel-release      
-      state: latest  
-      
-  - name: Disable SELinux
-    selinux:
-      state: disabled
+      - yum-plugin-tmprepo
+       
+
+  - name: Download spacewalk-repo
+    command: yum install -y spacewalk-repo --tmprepo=https://copr-be.cloud.fedoraproject.org/results/%40spacewalkproject/spacewalk-2.10/epel-7-x86_64/repodata/repomd.xml --nogpg
+    
+ 
+  - name: Update hosts file on server
+    lineinfile:
+      path: /etc/hosts
+      line: "3.237.0.182 spacewalk.azat.cc spacewalk"
+
+  - name: Download spacewalk-2.10
+    get_url:
+      url: https://copr.fedorainfracloud.org/coprs/g/spacewalkproject/spacewalk-2.10/
+      dest: ~/
+
+  - name: Install postgresql on server
+    yum:
+      name:
+      - spacewalk-setup-postgresql
+      - spacewalk-postgresql
+
+  - name: Firewall commands
+    command: firewall-cmd --add-service=http --permanent
+    command: firewall-cmd --add-service=http --permanent    
+    command: firewall-cmd --add-service=http --permanent;
+    command: firewall-cmd --add-service=http
+    command: firewall-cmd --add-service=http
+    command: firewall-cmd --add-service=https
+    command: firewall-cmd --runtime-to-perm  
+    
+  - name: Install Firewalld
+    yum:
+      name: firewalld
+
+  - name: Start Firewalld
+    service:
+      name: firewalld
+      state: started
+      enabled: yes
+
+  # - name: Reboot
+  #   command: reboot
+    
+  
+    
+
+  # - name: Copy rpm files to server
+  #   copy: 
+  #     src: "{{ item.src }}"
+  #     dest: "{{ item.dest }}"
+  
+  
+
+  # - name: Remote RPM install with yum
+  #   yum: name=http://example.com/some_package.rpm
+  
+
+
+    
+
 
       
       
