@@ -1,0 +1,24 @@
+- hosts: spacewalk-server   
+  tasks: 
+
+  - name: Disable SELinux
+    selinux:
+      state: disabled 
+
+  - name: Spacewalk server role
+    import_role:
+      name: spacewalk-server-role
+      
+           
+  
+
+ 
+ 
+    
+
+
+      
+      
+      
+      
+

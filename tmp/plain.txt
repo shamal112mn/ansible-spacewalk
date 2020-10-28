@@ -1,28 +1,28 @@
 export ANSIBLE_HOST_KEY_CHECKING=False
 
-
+https://copr.fedorainfracloud.org/coprs/g/spacewalkproject/spacewalk-2.10/repo/epel-7/group_spacewalkproject-spacewalk-2.10-epel-7.repo
 
 1  clear
-    2  getenforce
-    3  vi /etc/hosts
-    4  sudo vi /etc/hosts   3.237.0.182 spacewalk.azat.cc spacewalk
-    5  sudo wget https://copr.fedorainfracloud.org/coprs/g/spacewalkproject/spacewalk-2.10/
-    6  sudo yum install -y yum-plugin-tmprepo
-    7  sudo yum install -y spacewalk-repo --tmprepo=https://copr-be.cloud.fedoraproject.org/results/%40spacewalkproject/spacewalk-2.10/epel-7-x86_64/repodata/repomd.xml --nogpg
-    8  sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+  getenforce
+  vi /etc/hosts
+  sudo vi /etc/hosts   3.237.0.182 spacewalk.azat.cc spacewalk
+  sudo wget https://copr.fedorainfracloud.org/coprs/g/spacewalkproject/spacewalk-2.10/
+  sudo yum install -y yum-plugin-tmprepo
+  sudo yum install -y spacewalk-repo --tmprepo=https://copr-be.cloud.fedoraproject.org/results/%40spacewalkproject/spacewalk-2.10/epel-7-x86_64/repodata/repomd.xml --nogpg
+  sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
 
-    9  sudo yum -y install spacewalk-setup-postgresql
-   15  sudo yum -y install spacewalk-postgresql 
+  sudo yum -y install spacewalk-setup-postgresql
+  sudo yum -y install spacewalk-postgresql 
 
-   17  firewall-cmd --add-service=http --permanent
-   18  firewall-cmd --add-service=http --permanent
-   19  firewall-cmd --add-service=http --permanent;
-   20  firewall-cmd --add-service=http
-   21  firewall-cmd --add-service=http
+  firewall-cmd --add-service=http --permanent
+  firewall-cmd --add-service=http --permanent
+  firewall-cmd --add-service=http --permanent;
+  firewall-cmd --add-service=http
+  firewall-cmd --add-service=http
 
-   firewall-cmd --add-service=https
-   firewall-cmd --runtime-to-perm 
+  firewall-cmd --add-service=https
+  firewall-cmd --runtime-to-perm 
 
    22  sudo yum install firewalld -y
    23  systemctl status firewalld

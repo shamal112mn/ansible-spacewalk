@@ -1,0 +1,96 @@
+---
+# tasks file for spacewalk-server-role
+- name: Hostname change
+  hostname:
+    name: spacewalk
+
+- name: Install prerequisites
+  package:
+    name:    
+    - vim
+    - wget
+    - unzip
+    - epel-release      
+    state: latest 
+
+- name: Install on server
+  yum:
+    name:
+    - yum-plugin-tmprepo
+
+- name: Update hosts file on server
+  lineinfile:
+    path: /etc/hosts
+    line: "3.237.0.182 spacewalk.azat.com spacewalk"
+
+    
+  # 5  sudo wget https://copr.fedorainfracloud.org/coprs/g/spacewalkproject/spacewalk-2.10/
+  # 6  sudo yum install -y yum-plugin-tmprepo
+  # 7  sudo yum install -y spacewalk-repo --tmprepo=https://copr-be.cloud.fedoraproject.org/results/%40spacewalkproject/spacewalk-2.10/epel-7-x86_64/repodata/repomd.xml --nogpg
+  # 8  sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+
+- name: Install Spacewalk repository
+  yum: 
+    name: https://copr-be.cloud.fedoraproject.org/results/%40spacewalkproject/spacewalk-2.10/epel-7-x86_64/01259466-spacewalk-repo/spacewalk-repo-2.10-8.el7.noarch.rpm
+    state: present 
+ 
+
+- name: Install postgresql on server
+  yum:
+    name:
+    - spacewalk-setup-postgresql
+    - spacewalk-postgresql
+
+  
+- name: Install Firewalld
+  yum:
+    name: firewalld
+
+- name: Start Firewalld
+  service:
+    name: firewalld
+    state: started
+    enabled: yes
+
+- name: Firewall commands
+  command: firewall-cmd --add-service=http --permanent
+  command: firewall-cmd --add-service=https --permanent  
+  command: firewall-cmd --runtime-to-perm      
+
+- name: Reboot spacewalk server
+  reboot:
+    reboot_timeout: 300
+  
+- name: Continue firewall commands
+  command: firewall-cmd --add-port=5222/tcp --permanent 
+  command: firewall-cmd --add-port=5269/tcp --permanent 
+  command: firewall-cmd --add-port=69/udp --permanent
+  command: firewall-cmd --add-port=69/tcp --permanent 
+  command: firewall-cmd --add-port=5222/udp --permanent 
+  command: firewall-cmd --add-port=5269/udp --permanent
+  command: firewall-cmd --reload
+  command: firewall-cmd --list-services         # dhcpv6-client http https ssh
+  command: systemctl restart firewalld
+
+- name: spacewalk-setup-postgresql
+  command: spacewalk-setup-postgresql create --db spacewalk --user spacewalkuser --password spacewalkuser123
+
+- name: spacewalk setup postgresql2
+  command: spacewalk-setup  --skip-db-install
+
+- name: Copy answers file for spacewalk setip
+  template: 
+    src: answers.j2 
+    dest: /var/tmp/answers 
+    owner: root 
+    group: root 
+    mode: 0600
+
+- name: Install spacewalk
+  command: spacewalk-setup --answer-file=/var/tmp/answers
+  args:
+    creates: /var/log/rhn/install_db.log 
+    
+- name: spacewalk start service   
+  command: spacewalk-service restart 
