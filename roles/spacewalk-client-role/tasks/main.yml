@@ -1,2 +1,14 @@
 ---
 # tasks file for spacewalk-client-role
+
+# Steps to install spacewalk client site
+
+# sudo yum install rhn-client-tools rhn-check rhn-setup rhnsd m2crypto yum-rhn-plugin
+# sudo yum install epel-release
+# sudo rpm -Uvh https://copr-be.cloud.fedoraproject.org/results/%40spacewalkproject/spacewalk-2.10-client/epel-7-x86_64/01258160-spacewalk-repo/spacewalk-client-repo-2.10-8.el7.noarch.rpm
+# sudo rhnreg_ks --serverUrl=http://3.237.15.210/XMLRPC --activationkey=1-8be4b4528480688e6d4eda693a792c4c (edited) 
+
+
+
+
+

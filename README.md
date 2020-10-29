@@ -1,8 +1,10 @@
 # ansible-spacewalk
-Ansible project to setup spacewalk server and client sites
+
+
 
 Spacewalk playbooks and roles
 ==============
+    
 
       Two roles: Spacewalk-server-role and specewalk-client-role.
 
@@ -23,7 +25,7 @@ Spacewalk is an open-source package and system management solution for RedHat de
 
 
       Hardware and OS Requirements
-      
+
 
 
 1. Outbound open ports 80, 443
