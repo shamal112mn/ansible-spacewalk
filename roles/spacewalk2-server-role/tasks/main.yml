@@ -74,8 +74,8 @@
     src: answers.txt
     dest: /tmp/
 
-# - name: Spacewalk-setup
-#   command: spacewalk-setup --answer-file=/tmp/answers.txt  --non-interactive
+- name: Spacewalk-setup
+  command: spacewalk-setup --answer-file=/tmp/answers.txt  --non-interactive
 
 
    
