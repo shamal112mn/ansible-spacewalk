@@ -22,6 +22,7 @@ Spacewalk is an open-source package and system management solution for RedHat de
 
 
       Hardware and OS Requirements
+      
 
 1. Outbound open ports 80, 443
 2. Inbound open ports 80, 443, 5222 (only if you want to push actions to client machines) and 5269 (only for push actions to a Spacewalk Proxy), 69 udp if you want to use tftp
