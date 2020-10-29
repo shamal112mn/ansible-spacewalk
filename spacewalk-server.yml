@@ -7,7 +7,7 @@
 
   - name: Spacewalk server role
     import_role:
-      name: spacewalk2-server-role
+      name: spacewalk3-server-role
 
   
 
