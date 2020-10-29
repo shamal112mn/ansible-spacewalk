@@ -7,8 +7,11 @@
 
   - name: Spacewalk server role
     import_role:
-      name: spacewalk-server-role
-      
+      name: spacewalk2-server-role
+
+  
+
+  
            
   
 
