@@ -33,6 +33,7 @@
 
 
 
+
 1.  2CPU , 4GB RAM minimum, 50GB disk minimum recommended
 
 2.  Outbound open ports 80, 443
