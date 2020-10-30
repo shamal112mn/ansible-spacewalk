@@ -1,8 +1,12 @@
-# ansible-spacewalk
+# ansible-spacewalk project
 
-      Spacewalk is an open-source package and system management solution for RedHat derivative distributions like CentOS, Scientific Linux and Fedora, developed by the spacewalk community.
+      Spacewalk is an open-source package and system management solution 
+      for RedHat derivative distributions like CentOS, Scientific Linux and 
+      Fedora, developed by the spacewalk community.
 
-      Spacewalk provides the web interface to manage and view the updates for the system that are registered with Spacewalk, and we can initiate the task such as install, update, inventory, and so on.
+      Spacewalk provides the web interface to manage and view the updates 
+      for the system that are registered with Spacewalk, 
+      and we can initiate the task such as install, update, inventory, and so on.
 
 
              Spacewalk playbooks and roles
@@ -53,14 +57,20 @@
             [spacewalk-clients]
 
       spacewalk-clientX ansible_ssh_host=XXX.XXX.XXX.XXX ansible_user=centos
+
       spacewalk-clientX ansible_ssh_host=XXX.XXX.XXX.XXX ansible_user=centos
 
   2. Local command on server side:
       
       spacewalk-service status
+
       spacewalk-service stop
+
       spacewalk-service start
+
       spacewalk-service restart
 
+
       For more options:
+
       spacewalk-service --help
