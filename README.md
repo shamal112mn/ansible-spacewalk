@@ -18,7 +18,7 @@
 
 
 
-      Features
+      # Features
 
 1. Inventory of the systems
 2. Install and Update system packages.
@@ -29,11 +29,11 @@
 
 
 
-      Hardware and OS Requirements centOS7
+      # Hardware and OS Requirements centOS7
 
 
 
-1.  2 CPU , 4GB RAM minimum, 50GB disk minimum recommended
+1.  2CPU , 4GB RAM minimum, 50GB disk minimum recommended
 
 2.  Outbound open ports 80, 443
 
@@ -44,7 +44,7 @@
 5.  Storage for packages (default /var/satellite): Depends on what you’re storing; Red Hat recommend 6GB per channel for their channels
  
 
- Run ansible scripts on Linux centOS7: 
+      Run ansible scripts on Linux centOS7: 
 
   1. create <hosts> file with below content:
 
